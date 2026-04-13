@@ -199,11 +199,12 @@ main {
   border: 1px solid var(--color-borde);
   border-radius: 4px;
   font-size: 1rem;
-  outline: none;
 }
 
 .seccion-busqueda input[type="text"]:focus {
   border-color: var(--color-focus);
+  outline: 2px solid var(--color-focus);
+  outline-offset: -1px;
 }
 
 .seccion-busqueda button {
@@ -376,4 +377,18 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
+}
+
+/* =====================
+   ACCESIBILIDAD: MOVIMIENTO
+   ===================== */
+
+/* Si el usuario tiene activado "Reducir movimiento" en su sistema,
+   desactivamos todas las transiciones y animaciones.
+   Esto protege a personas con epilepsia fotosensible o vértigo */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
 }

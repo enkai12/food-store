@@ -136,6 +136,10 @@ tbody td {
   border-bottom: 1px solid var(--color-borde);
   /* vertical-align middle centra el contenido (la imagen) verticalmente */
   vertical-align: middle;
+  /* font-variant-numeric: tabular-nums hace que todos los dígitos
+     tengan el mismo ancho — evita que los números "bailen" al leer
+     una columna de precios o cantidades de arriba a abajo */
+  font-variant-numeric: tabular-nums;
 }
 
 /* :nth-child(even) selecciona las filas en posición par (2, 4, 6...)
@@ -284,7 +288,6 @@ tbody td img {
   border: 1px solid var(--color-borde);
   border-radius: 4px;
   font-size: 1rem;
-  outline: none;
   /* font-family: inherit hace que el textarea use la misma fuente del body
      Por defecto el textarea usa una fuente monoespaciada distinta */
   font-family: inherit;
@@ -294,6 +297,8 @@ tbody td img {
 .form-producto select:focus,
 .form-producto textarea:focus {
   border-color: var(--color-focus);
+  outline: 2px solid var(--color-focus);
+  outline-offset: -1px;
 }
 
 .form-producto textarea {
@@ -329,4 +334,15 @@ footer {
   padding: 1rem;
   margin-top: 2rem;
   font-size: 0.85rem;
+}
+
+/* =====================
+   ACCESIBILIDAD: MOVIMIENTO
+   ===================== */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
 }

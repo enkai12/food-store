@@ -93,23 +93,26 @@ para separarlos entre sí */
 }
 
 /* Inputs al 100% del ancho de la tarjeta, con padding interno
-para que el texto no quede pegado al borde
-outline none para sacar el borde azul por defecto del navegador
-y manejarlo yo con :focus */
+para que el texto no quede pegado al borde */
 .login__input {
   width: 100%;
   padding: 0.6rem;
   border: 1px solid var(--color-borde);
   border-radius: 4px;
   font-size: 1rem;
-  outline: none;
 }
 
-/* Pseudoclase :focus, se activa cuando el usuario hace clic
-en el input para escribir, le cambio el color del borde
-para que sepa en qué campo está parado */
+/* :focus se activa cuando el usuario hace clic o navega con Tab
+   Cambiamos el borde Y agregamos outline para los usuarios de teclado.
+   IMPORTANTE: nunca sacar el outline sin poner un reemplazo visible —
+   es una regla de accesibilidad (WCAG 2.4.7) que protege a usuarios
+   que no usan mouse (personas con discapacidad motriz, etc.) */
 .login__input:focus {
   border-color: var(--color-focus);
+  outline: 2px solid var(--color-focus);
+  /* outline-offset: -1px hace que el outline quede "adentro" del borde
+     y se vea como si el borde se hubiera engrosado — se ve más prolijo */
+  outline-offset: -1px;
 }
 
 /* botón */
@@ -158,4 +161,20 @@ por defecto con text-decoration none */
 /* Le agrego subrayado solo cuando pasa el mouse por encima */
 .login__register-link:hover {
   text-decoration: underline;
+}
+
+/* =====================
+   ACCESIBILIDAD: MOVIMIENTO
+   ===================== */
+
+/* Algunos usuarios tienen configurado su sistema operativo para
+   reducir las animaciones (personas con epilepsia, vértigo, etc.)
+   @media (prefers-reduced-motion: reduce) detecta esa configuración
+   y desactiva todas las transiciones — la página funciona igual
+   pero sin movimiento */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
 }

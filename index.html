@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Food Store</title>
+    <!-- preconnect va antes que el CSS — así el navegador negocia
+         la conexión con placehold.co mientras procesa la hoja de estilos,
+         en paralelo, en vez de esperar a que el CSS termine -->
+    <link rel="preconnect" href="https://placehold.co" />
+    <!-- dns-prefetch como respaldo para navegadores que no soportan preconnect -->
+    <link rel="dns-prefetch" href="https://placehold.co" />
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
@@ -39,6 +45,7 @@
               id="buscar"
               name="buscar"
               placeholder="Ej: Hamburguesa doble"
+              autocomplete="off"
             />
             <button type="submit">Buscar</button>
           </form>
@@ -50,6 +57,7 @@
               <img
                 src="https://placehold.co/200x200/FF6B35/white?text=Hamburguesa+Triple"
                 alt="Hamburguesa Triple con cheddar"
+                loading="lazy"
               />
               <div class="tarjeta-producto__contenido">
                 <h3>Hamburguesa Triple</h3>
@@ -65,6 +73,7 @@
               <img
                 src="https://placehold.co/200x200/FF6B35/white?text=Hamburguesa+Doble"
                 alt="Hamburguesa Doble con queso"
+                loading="lazy"
               />
               <div class="tarjeta-producto__contenido">
                 <h3>Hamburguesa Doble</h3>
@@ -80,6 +89,7 @@
               <img
                 src="https://placehold.co/200x200/8B4513/white?text=Lomito+Completo"
                 alt="Lomito Completo con jamon y queso"
+                loading="lazy"
               />
               <div class="tarjeta-producto__contenido">
                 <h3>Lomito Completo</h3>
@@ -95,6 +105,7 @@
               <img
                 src="https://placehold.co/200x200/8B4513/white?text=Lomito+Especial"
                 alt="Lomito Especial con bacon y cheddar"
+                loading="lazy"
               />
               <div class="tarjeta-producto__contenido">
                 <h3>Lomito Especial</h3>
@@ -110,6 +121,7 @@
               <img
                 src="https://placehold.co/200x200/E63946/white?text=Pizza+Muzzarella"
                 alt="Pizza Muzzarella con salsa casera"
+                loading="lazy"
               />
               <div class="tarjeta-producto__contenido">
                 <h3>Pizza Muzzarella</h3>
@@ -125,6 +137,7 @@
               <img
                 src="https://placehold.co/200x200/E63946/white?text=Pizza+Napolitana"
                 alt="Pizza Napolitana con tomate y ajo"
+                loading="lazy"
               />
               <div class="tarjeta-producto__contenido">
                 <h3>Pizza Napolitana</h3>
@@ -140,6 +153,7 @@
               <img
                 src="https://placehold.co/200x200/F4A261/white?text=Papas+Cheddar"
                 alt="Papas con Cheddar derretido"
+                loading="lazy"
               />
               <div class="tarjeta-producto__contenido">
                 <h3>Papas con Cheddar</h3>
@@ -155,6 +169,7 @@
               <img
                 src="https://placehold.co/200x200/F4A261/white?text=Papas+Bacon"
                 alt="Papas con Bacon crocante"
+                loading="lazy"
               />
               <div class="tarjeta-producto__contenido">
                 <h3>Papas con Bacon</h3>
@@ -170,6 +185,7 @@
               <img
                 src="https://placehold.co/200x200/2A9D8F/white?text=Gaseosa+Cola"
                 alt="Gaseosa Cola 500ml"
+                loading="lazy"
               />
               <div class="tarjeta-producto__contenido">
                 <h3>Gaseosa Cola 500ml</h3>
@@ -185,6 +201,7 @@
               <img
                 src="https://placehold.co/200x200/2A9D8F/white?text=Agua+Mineral"
                 alt="Agua Mineral 500ml"
+                loading="lazy"
               />
               <div class="tarjeta-producto__contenido">
                 <h3>Agua Mineral 500ml</h3>
@@ -200,6 +217,7 @@
               <img
                 src="https://placehold.co/200x200/2A9D8F/white?text=Jugo+Naranja"
                 alt="Jugo de Naranja natural 500ml"
+                loading="lazy"
               />
               <div class="tarjeta-producto__contenido">
                 <h3>Jugo de Naranja 500ml</h3>
@@ -215,6 +233,7 @@
               <img
                 src="https://placehold.co/200x200/2A9D8F/white?text=Limonada"
                 alt="Limonada casera 500ml"
+                loading="lazy"
               />
               <div class="tarjeta-producto__contenido">
                 <h3>Limonada Casera 500ml</h3>
