@@ -1,1 +1,18 @@
+# Claude Code — agentes, skills y memoria del proyecto
 .agents/
+.claude/
+
+# Archivo de lock de skills (generado automáticamente)
+skills-lock.json
+
+# macOS — archivos del sistema que genera automáticamente
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows — archivos del sistema
+Thumbs.db
+ehthumbs.db
+Desktop.ini
