@@ -337,6 +337,54 @@ footer {
 }
 
 /* =====================
+   RESPONSIVE — MÓVIL
+   ===================== */
+
+@media (max-width: 600px) {
+
+  /* Mismo ajuste del header que en index.css */
+  header {
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  header nav ul {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  /* La tabla tiene muchas columnas y no cabe en pantallas chicas.
+     overflow-x: auto agrega un scroll HORIZONTAL solo a la tabla
+     — el resto de la página no se mueve, solo la tabla se puede
+     deslizar para ver todas las columnas */
+  .seccion-tabla {
+    overflow-x: auto;
+  }
+
+  /* La tabla necesita un ancho mínimo para que las columnas no se aplasten
+     min-width hace que la tabla mantenga su forma y el scroll la cubra */
+  table {
+    min-width: 600px;
+  }
+
+  /* El formulario pasa de 2 columnas a 1 — en celular no hay espacio
+     para 2 campos lado a lado */
+  .form-producto {
+    grid-template-columns: 1fr;
+  }
+
+  /* Con 1 columna ya no necesitamos que el campo de descripción
+     y el botón "ocupen 2 columnas" — ocupan la única que hay */
+  .form-producto__campo--ancho,
+  .form-producto__boton {
+    grid-column: 1;
+  }
+}
+
+/* =====================
    ACCESIBILIDAD: MOVIMIENTO
    ===================== */
 

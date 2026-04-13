@@ -380,6 +380,46 @@ footer a:hover {
 }
 
 /* =====================
+   RESPONSIVE — MÓVIL
+   ===================== */
+
+/* @media (max-width: 600px) significa "aplicá estas reglas SOLO cuando
+   el ancho de la pantalla sea 600px o menos" — es decir, en celulares.
+   600px es un breakpoint común para separar móvil de escritorio.
+   Todo lo que está FUERA de este bloque aplica a todas las pantallas */
+@media (max-width: 600px) {
+
+  /* El layout principal pasa de 2 columnas (aside + main) a 1 sola columna
+     El aside queda arriba y el main debajo, uno encima del otro */
+  .contenedor-principal {
+    grid-template-columns: 1fr;
+  }
+
+  /* El header tiene el título y la nav en fila — en móvil los apilamos
+     en columna para que no queden apretados */
+  header {
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  /* La nav también la centramos en móvil */
+  header nav ul {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  /* El buscador en móvil pasa a columna también — el input y el botón
+     uno debajo del otro — en pantallas muy chicas no entran en fila */
+  .seccion-busqueda form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* =====================
    ACCESIBILIDAD: MOVIMIENTO
    ===================== */
 
