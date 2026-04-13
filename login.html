@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- Sin esta etiqueta el celular muestra la página como si fuera un monitor
+         y el responsive design no funciona -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Food Store - Login</title>
+
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <!-- BEM: "login"
+         tarjeta que después en CSS voy a centrar,
+         darle fondo blanco, sombra y bordes redondeados -->
+    <div class="login">
+      <!-- Título principal, en CSS le aplico text-transform uppercase
+             para que se vea "FOOD STORE" como pide la consigna -->
+      <h1 class="login__title">Food Store</h1>
+
+      <!-- Subtítulo, la consigna dice que puede ser h2 o p -->
+      <p class="login__subtitle">Iniciar Sesión</p>
+
+      <!-- No le pongo action al form porque todavía no tengo servidor -->
+      <form class="login__form">
+        <!-- Cada par label + input lo meto en un div para controlar
+                 el espaciado entre campos desde CSS -->
+        <div class="login__field">
+          <!-- El for del label tiene que coincidir con el id del input,
+                     así quedan asociados y al hacer clic en el texto
+                     se posiciona el cursor en el campo -->
+          <label class="login__label" for="email">Email:</label>
+          <!-- type email activa la validación del navegador,
+                     -required lo hace obligatorio,
+                     -placeholder es el texto gris de ejemplo -->
+          <input
+            class="login__input"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="tucorreo@ejemplo.com"
+            required
+          />
+        </div>
+
+        <div class="login__field">
+          <label class="login__label" for="password">Contraseña:</label>
+          <!-- type password - oculta lo que escribe el usuario -->
+          <input
+            class="login__input"
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Mínimo 8 caracteres"
+            required
+          />
+        </div>
+
+        <!-- type submit hace que al hacer clic se intente enviar el form,
+                 si hay campos required vacíos o el email está mal escrito
+                 el navegador frena y muestra el error -->
+        <button class="login__button" type="submit">Ingresar</button>
+      </form>
+
+      <!-- El href="#" es temporal -->
+      <p class="login__register">
+        ¿No tenés cuenta?
+        <a class="login__register-link" href="#">Registrate acá</a>
+      </p>
+    </div>
+  </body>
+</html>
