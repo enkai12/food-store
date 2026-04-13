@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Food Store</title>
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <header>
@@ -17,178 +18,218 @@
         </ul>
       </nav>
     </header>
-    <aside>
-      <h2>Categorías</h2>
-      <ul>
-        <li><a href="#">Todas</a></li>
-        <li><a href="#">Hamburguesas</a></li>
-        <li><a href="#">Lomos</a></li>
-        <li><a href="#">Pizzas</a></li>
-        <li><a href="#">Papas Fritas</a></li>
-        <li><a href="#">Bebidas</a></li>
-      </ul>
-    </aside>
-    <main>
-      <section>
-        <form>
-          <label for="buscar">Buscar productos:</label>
-          <input
-            type="text"
-            id="buscar"
-            name="buscar"
-            placeholder="Ej: Hamburguesa doble"
-          />
-          <button type="submit">Buscar</button>
-        </form>
-      </section>
-      <section>
-        <h2>Productos Destacados</h2>
-        <article>
-          <img
-            src="https://placehold.co/200x200/FF6B35/white?text=Hamburguesa+Triple"
-            width="200"
-            alt="Hamburguesa Triple con cheddar"
-          />
-          <h3>Hamburguesa Triple</h3>
-          <p>Hamburguesa triple smash con mucho cheddar.</p>
-          <p>Precio: <strong>$25000.00</strong></p>
-          <button>Ver Detalles</button>
-          <button>Agregar al Carrito</button>
-        </article>
-        <article>
-          <img
-            src="https://placehold.co/200x200/FF6B35/white?text=Hamburguesa+Doble"
-            width="200"
-            alt="Hamburguesa Doble con queso"
-          />
-          <h3>Hamburguesa Doble</h3>
-          <p>Doble medallón de carne con queso y salsa especial.</p>
-          <p>Precio: <strong>$19000.00</strong></p>
-          <button>Ver Detalles</button>
-          <button>Agregar al Carrito</button>
-        </article>
-        <article>
-          <img
-            src="https://placehold.co/200x200/8B4513/white?text=Lomito+Completo"
-            width="200"
-            alt="Lomito Completo con jamon y queso"
-          />
-          <h3>Lomito Completo</h3>
-          <p>Lomito con jamón, queso, lechuga, tomate y huevo.</p>
-          <p>Precio: <strong>$22000.00</strong></p>
-          <button>Ver Detalles</button>
-          <button>Agregar al Carrito</button>
-        </article>
-        <article>
-          <img
-            src="https://placehold.co/200x200/8B4513/white?text=Lomito+Especial"
-            width="200"
-            alt="Lomito Especial con bacon y cheddar"
-          />
-          <h3>Lomito Especial</h3>
-          <p>Lomito con bacon, cheddar fundido y cebolla caramelizada.</p>
-          <p>Precio: <strong>$26000.00</strong></p>
-          <button>Ver Detalles</button>
-          <button>Agregar al Carrito</button>
-        </article>
-        <article>
-          <img
-            src="https://placehold.co/200x200/E63946/white?text=Pizza+Muzzarella"
-            width="200"
-            alt="Pizza Muzzarella con salsa casera"
-          />
-          <h3>Pizza Muzzarella</h3>
-          <p>Salsa de tomate casera y muzzarella abundante.</p>
-          <p>Precio: <strong>$18000.00</strong></p>
-          <button>Ver Detalles</button>
-          <button>Agregar al Carrito</button>
-        </article>
-        <article>
-          <img
-            src="https://placehold.co/200x200/E63946/white?text=Pizza+Napolitana"
-            width="200"
-            alt="Pizza Napolitana con tomate y ajo"
-          />
-          <h3>Pizza Napolitana</h3>
-          <p>Muzzarella, rodajas de tomate, ajo y aceitunas verdes.</p>
-          <p>Precio: <strong>$20000.00</strong></p>
-          <button>Ver Detalles</button>
-          <button>Agregar al Carrito</button>
-        </article>
-        <article>
-          <img
-            src="https://placehold.co/200x200/F4A261/white?text=Papas+Cheddar"
-            width="200"
-            alt="Papas con Cheddar derretido"
-          />
-          <h3>Papas con Cheddar</h3>
-          <p>Papas fritas crocantes con cheddar derretido y bacon.</p>
-          <p>Precio: <strong>$8000.00</strong></p>
-          <button>Ver Detalles</button>
-          <button>Agregar al Carrito</button>
-        </article>
-        <article>
-          <img
-            src="https://placehold.co/200x200/F4A261/white?text=Papas+Bacon"
-            width="200"
-            alt="Papas con Bacon crocante"
-          />
-          <h3>Papas con Bacon</h3>
-          <p>Papas fritas con bacon crocante y salsa barbacoa.</p>
-          <p>Precio: <strong>$9500.00</strong></p>
-          <button>Ver Detalles</button>
-          <button>Agregar al Carrito</button>
-        </article>
-        <article>
-          <img
-            src="https://placehold.co/200x200/2A9D8F/white?text=Gaseosa+Cola"
-            width="200"
-            alt="Gaseosa Cola 500ml"
-          />
-          <h3>Gaseosa Cola 500ml</h3>
-          <p>Bebida gaseosa sabor cola, botella de 500ml.</p>
-          <p>Precio: <strong>$3500.00</strong></p>
-          <button>Ver Detalles</button>
-          <button>Agregar al Carrito</button>
-        </article>
-        <article>
-          <img
-            src="https://placehold.co/200x200/2A9D8F/white?text=Agua+Mineral"
-            width="200"
-            alt="Agua Mineral 500ml"
-          />
-          <h3>Agua Mineral 500ml</h3>
-          <p>Agua mineral sin gas, botella de 500ml.</p>
-          <p>Precio: <strong>$2000.00</strong></p>
-          <button>Ver Detalles</button>
-          <button>Agregar al Carrito</button>
-        </article>
-        <article>
-          <img
-            src="https://placehold.co/200x200/2A9D8F/white?text=Jugo+Naranja"
-            width="200"
-            alt="Jugo de Naranja natural 500ml"
-          />
-          <h3>Jugo de Naranja 500ml</h3>
-          <p>Jugo de naranja natural exprimido, 500ml.</p>
-          <p>Precio: <strong>$4500.00</strong></p>
-          <button>Ver Detalles</button>
-          <button>Agregar al Carrito</button>
-        </article>
-        <article>
-          <img
-            src="https://placehold.co/200x200/2A9D8F/white?text=Limonada"
-            width="200"
-            alt="Limonada casera 500ml"
-          />
-          <h3>Limonada Casera 500ml</h3>
-          <p>Limonada casera con menta y jengibre, 500ml.</p>
-          <p>Precio: <strong>$4000.00</strong></p>
-          <button>Ver Detalles</button>
-          <button>Agregar al Carrito</button>
-        </article>
-      </section>
-    </main>
+    <div class="contenedor-principal">
+      <aside>
+        <h2>Categorías</h2>
+        <ul>
+          <li><a href="#">Todas</a></li>
+          <li><a href="#">Hamburguesas</a></li>
+          <li><a href="#">Lomos</a></li>
+          <li><a href="#">Pizzas</a></li>
+          <li><a href="#">Papas Fritas</a></li>
+          <li><a href="#">Bebidas</a></li>
+        </ul>
+      </aside>
+      <main>
+        <section class="seccion-busqueda">
+          <form>
+            <label for="buscar">Buscar productos:</label>
+            <input
+              type="text"
+              id="buscar"
+              name="buscar"
+              placeholder="Ej: Hamburguesa doble"
+            />
+            <button type="submit">Buscar</button>
+          </form>
+        </section>
+        <section class="seccion-productos">
+          <h2>Productos Destacados</h2>
+          <div class="grilla-productos">
+            <article class="tarjeta-producto">
+              <img
+                src="https://placehold.co/200x200/FF6B35/white?text=Hamburguesa+Triple"
+                alt="Hamburguesa Triple con cheddar"
+              />
+              <div class="tarjeta-producto__contenido">
+                <h3>Hamburguesa Triple</h3>
+                <p>Hamburguesa triple smash con mucho cheddar.</p>
+                <p class="precio"><strong>$25000.00</strong></p>
+                <div class="tarjeta-producto__botones">
+                  <button>Ver Detalles</button>
+                  <button>Agregar al Carrito</button>
+                </div>
+              </div>
+            </article>
+            <article class="tarjeta-producto">
+              <img
+                src="https://placehold.co/200x200/FF6B35/white?text=Hamburguesa+Doble"
+                alt="Hamburguesa Doble con queso"
+              />
+              <div class="tarjeta-producto__contenido">
+                <h3>Hamburguesa Doble</h3>
+                <p>Doble medallón de carne con queso y salsa especial.</p>
+                <p class="precio"><strong>$19000.00</strong></p>
+                <div class="tarjeta-producto__botones">
+                  <button>Ver Detalles</button>
+                  <button>Agregar al Carrito</button>
+                </div>
+              </div>
+            </article>
+            <article class="tarjeta-producto">
+              <img
+                src="https://placehold.co/200x200/8B4513/white?text=Lomito+Completo"
+                alt="Lomito Completo con jamon y queso"
+              />
+              <div class="tarjeta-producto__contenido">
+                <h3>Lomito Completo</h3>
+                <p>Lomito con jamón, queso, lechuga, tomate y huevo.</p>
+                <p class="precio"><strong>$22000.00</strong></p>
+                <div class="tarjeta-producto__botones">
+                  <button>Ver Detalles</button>
+                  <button>Agregar al Carrito</button>
+                </div>
+              </div>
+            </article>
+            <article class="tarjeta-producto">
+              <img
+                src="https://placehold.co/200x200/8B4513/white?text=Lomito+Especial"
+                alt="Lomito Especial con bacon y cheddar"
+              />
+              <div class="tarjeta-producto__contenido">
+                <h3>Lomito Especial</h3>
+                <p>Lomito con bacon, cheddar fundido y cebolla caramelizada.</p>
+                <p class="precio"><strong>$26000.00</strong></p>
+                <div class="tarjeta-producto__botones">
+                  <button>Ver Detalles</button>
+                  <button>Agregar al Carrito</button>
+                </div>
+              </div>
+            </article>
+            <article class="tarjeta-producto">
+              <img
+                src="https://placehold.co/200x200/E63946/white?text=Pizza+Muzzarella"
+                alt="Pizza Muzzarella con salsa casera"
+              />
+              <div class="tarjeta-producto__contenido">
+                <h3>Pizza Muzzarella</h3>
+                <p>Salsa de tomate casera y muzzarella abundante.</p>
+                <p class="precio"><strong>$18000.00</strong></p>
+                <div class="tarjeta-producto__botones">
+                  <button>Ver Detalles</button>
+                  <button>Agregar al Carrito</button>
+                </div>
+              </div>
+            </article>
+            <article class="tarjeta-producto">
+              <img
+                src="https://placehold.co/200x200/E63946/white?text=Pizza+Napolitana"
+                alt="Pizza Napolitana con tomate y ajo"
+              />
+              <div class="tarjeta-producto__contenido">
+                <h3>Pizza Napolitana</h3>
+                <p>Muzzarella, rodajas de tomate, ajo y aceitunas verdes.</p>
+                <p class="precio"><strong>$20000.00</strong></p>
+                <div class="tarjeta-producto__botones">
+                  <button>Ver Detalles</button>
+                  <button>Agregar al Carrito</button>
+                </div>
+              </div>
+            </article>
+            <article class="tarjeta-producto">
+              <img
+                src="https://placehold.co/200x200/F4A261/white?text=Papas+Cheddar"
+                alt="Papas con Cheddar derretido"
+              />
+              <div class="tarjeta-producto__contenido">
+                <h3>Papas con Cheddar</h3>
+                <p>Papas fritas crocantes con cheddar derretido y bacon.</p>
+                <p class="precio"><strong>$8000.00</strong></p>
+                <div class="tarjeta-producto__botones">
+                  <button>Ver Detalles</button>
+                  <button>Agregar al Carrito</button>
+                </div>
+              </div>
+            </article>
+            <article class="tarjeta-producto">
+              <img
+                src="https://placehold.co/200x200/F4A261/white?text=Papas+Bacon"
+                alt="Papas con Bacon crocante"
+              />
+              <div class="tarjeta-producto__contenido">
+                <h3>Papas con Bacon</h3>
+                <p>Papas fritas con bacon crocante y salsa barbacoa.</p>
+                <p class="precio"><strong>$9500.00</strong></p>
+                <div class="tarjeta-producto__botones">
+                  <button>Ver Detalles</button>
+                  <button>Agregar al Carrito</button>
+                </div>
+              </div>
+            </article>
+            <article class="tarjeta-producto">
+              <img
+                src="https://placehold.co/200x200/2A9D8F/white?text=Gaseosa+Cola"
+                alt="Gaseosa Cola 500ml"
+              />
+              <div class="tarjeta-producto__contenido">
+                <h3>Gaseosa Cola 500ml</h3>
+                <p>Bebida gaseosa sabor cola, botella de 500ml.</p>
+                <p class="precio"><strong>$3500.00</strong></p>
+                <div class="tarjeta-producto__botones">
+                  <button>Ver Detalles</button>
+                  <button>Agregar al Carrito</button>
+                </div>
+              </div>
+            </article>
+            <article class="tarjeta-producto">
+              <img
+                src="https://placehold.co/200x200/2A9D8F/white?text=Agua+Mineral"
+                alt="Agua Mineral 500ml"
+              />
+              <div class="tarjeta-producto__contenido">
+                <h3>Agua Mineral 500ml</h3>
+                <p>Agua mineral sin gas, botella de 500ml.</p>
+                <p class="precio"><strong>$2000.00</strong></p>
+                <div class="tarjeta-producto__botones">
+                  <button>Ver Detalles</button>
+                  <button>Agregar al Carrito</button>
+                </div>
+              </div>
+            </article>
+            <article class="tarjeta-producto">
+              <img
+                src="https://placehold.co/200x200/2A9D8F/white?text=Jugo+Naranja"
+                alt="Jugo de Naranja natural 500ml"
+              />
+              <div class="tarjeta-producto__contenido">
+                <h3>Jugo de Naranja 500ml</h3>
+                <p>Jugo de naranja natural exprimido, 500ml.</p>
+                <p class="precio"><strong>$4500.00</strong></p>
+                <div class="tarjeta-producto__botones">
+                  <button>Ver Detalles</button>
+                  <button>Agregar al Carrito</button>
+                </div>
+              </div>
+            </article>
+            <article class="tarjeta-producto">
+              <img
+                src="https://placehold.co/200x200/2A9D8F/white?text=Limonada"
+                alt="Limonada casera 500ml"
+              />
+              <div class="tarjeta-producto__contenido">
+                <h3>Limonada Casera 500ml</h3>
+                <p>Limonada casera con menta y jengibre, 500ml.</p>
+                <p class="precio"><strong>$4000.00</strong></p>
+                <div class="tarjeta-producto__botones">
+                  <button>Ver Detalles</button>
+                  <button>Agregar al Carrito</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
     <footer>
       <p>&copy; 2024 Food Store. Todos los derechos reservados.</p>
       <p>
