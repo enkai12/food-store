@@ -1,72 +1,73 @@
+const contenedor = document.getElementById("contenedor-productos");
+const listaCategorias = document.getElementById("lista-categorias");
+
 const renderizarProductos = (lista) => {
-  const contenedor = document.getElementById("contenedor-productos");
   contenedor.innerHTML = "";
   lista.forEach((producto) => {
     const article = document.createElement("article");
     article.className = "tarjeta-producto";
+    article.dataset.id = producto.id;
     article.innerHTML = `
       <img src="${producto.imagen}" alt="${producto.nombre}" loading="lazy" />
       <div class="tarjeta-producto__contenido">
         <h3>${producto.nombre}</h3>
         <p>${producto.descripcion}</p>
-        <p class="precio"><strong>$${producto.precio.toLocaleString("es-AR")}</strong></p>
+        <p class="precio"><strong>$${formatearPrecio(producto.precio)}</strong></p>
         <div class="tarjeta-producto__botones">
           <button>Ver Detalles</button>
           <button class="btn-agregar">Agregar</button>
         </div>
       </div>
     `;
-    article.querySelector(".btn-agregar").addEventListener("click", () => {
-      alert(producto.nombre);
-    });
     contenedor.appendChild(article);
   });
 };
 
+contenedor.addEventListener("click", (e) => {
+  if (!e.target.classList.contains("btn-agregar")) return;
+  const id = Number(e.target.closest("article").dataset.id);
+  const producto = productos.find((p) => p.id === id);
+  if (producto) alert(producto.nombre);
+});
+
 const marcarCategoriaActiva = (enlace) => {
-  document.querySelectorAll("#lista-categorias a").forEach((a) => a.classList.remove("categoria-activa"));
+  listaCategorias.querySelectorAll("a").forEach((a) => a.classList.remove("categoria-activa"));
   enlace.classList.add("categoria-activa");
 };
 
-const cargarCategorias = () => {
-  const lista = document.getElementById("lista-categorias");
-
-  const liTodas = document.createElement("li");
-  liTodas.innerHTML = `<a href="#">Todas</a>`;
-  liTodas.querySelector("a").addEventListener("click", (e) => {
+const crearItemCategoria = (texto, alHacerClick) => {
+  const li = document.createElement("li");
+  const a = document.createElement("a");
+  a.href = "#";
+  a.textContent = texto;
+  a.addEventListener("click", (e) => {
     e.preventDefault();
     marcarCategoriaActiva(e.currentTarget);
-    renderizarProductos(productos);
+    alHacerClick();
   });
-  lista.appendChild(liTodas);
-
-  categorias.forEach((categoria) => {
-    const li = document.createElement("li");
-    const a = document.createElement("a");
-    a.href = "#";
-    a.textContent = categoria;
-    a.addEventListener("click", (e) => {
-      e.preventDefault();
-      marcarCategoriaActiva(e.currentTarget);
-      const filtrados = productos.filter((p) => p.categoria === categoria);
-      renderizarProductos(filtrados);
-    });
-    li.appendChild(a);
-    lista.appendChild(li);
-  });
-
-  marcarCategoriaActiva(lista.querySelector("a"));
+  li.appendChild(a);
+  return li;
 };
 
-const cargarProductos = () => {
-  renderizarProductos(productos);
+const cargarCategorias = () => {
+  listaCategorias.appendChild(
+    crearItemCategoria("Todas", () => renderizarProductos(productos))
+  );
+  categorias.forEach((categoria) => {
+    listaCategorias.appendChild(
+      crearItemCategoria(categoria, () =>
+        renderizarProductos(productos.filter((p) => p.categoria === categoria))
+      )
+    );
+  });
+  marcarCategoriaActiva(listaCategorias.querySelector("a"));
 };
 
 const formularioBusqueda = document.querySelector(".seccion-busqueda form");
 formularioBusqueda.addEventListener("submit", (e) => {
   e.preventDefault();
   const termino = document.getElementById("buscar").value.trim().toLowerCase();
-  marcarCategoriaActiva(document.querySelector("#lista-categorias a"));
+  marcarCategoriaActiva(listaCategorias.querySelector("a"));
   const filtrados = termino === ""
     ? productos
     : productos.filter(
@@ -78,4 +79,4 @@ formularioBusqueda.addEventListener("submit", (e) => {
 });
 
 cargarCategorias();
-cargarProductos();
+renderizarProductos(productos);

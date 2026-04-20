@@ -1,5 +1,7 @@
 const categorias = ["Hamburguesas", "Lomos", "Pizzas", "Papas Fritas", "Bebidas"];
 
+const formatearPrecio = (precio) => precio.toLocaleString("es-AR");
+
 const productos = [
   {
     id: 1,
