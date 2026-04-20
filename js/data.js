@@ -8,6 +8,7 @@ const productos = [
     precio: 25000,
     imagen: "./assets/hamburguesa.png",
     categoria: "Hamburguesas",
+    stock: 12,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ const productos = [
     precio: 19000,
     imagen: "./assets/hamburguesa.png",
     categoria: "Hamburguesas",
+    stock: 15,
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ const productos = [
     precio: 22000,
     imagen: "https://placehold.co/200x200/8B4513/white?text=Lomito+Completo",
     categoria: "Lomos",
+    stock: 8,
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ const productos = [
     precio: 26000,
     imagen: "https://placehold.co/200x200/8B4513/white?text=Lomito+Especial",
     categoria: "Lomos",
+    stock: 6,
   },
   {
     id: 5,
@@ -40,6 +44,7 @@ const productos = [
     precio: 18000,
     imagen: "./assets/pizza.png",
     categoria: "Pizzas",
+    stock: 5,
   },
   {
     id: 6,
@@ -48,6 +53,7 @@ const productos = [
     precio: 20000,
     imagen: "./assets/pizza.png",
     categoria: "Pizzas",
+    stock: 4,
   },
   {
     id: 7,
@@ -56,6 +62,7 @@ const productos = [
     precio: 8000,
     imagen: "./assets/papas.png",
     categoria: "Papas Fritas",
+    stock: 0,
   },
   {
     id: 8,
@@ -64,6 +71,7 @@ const productos = [
     precio: 9500,
     imagen: "./assets/papas.png",
     categoria: "Papas Fritas",
+    stock: 10,
   },
   {
     id: 9,
@@ -72,6 +80,7 @@ const productos = [
     precio: 3500,
     imagen: "https://placehold.co/200x200/2A9D8F/white?text=Gaseosa+Cola",
     categoria: "Bebidas",
+    stock: 24,
   },
   {
     id: 10,
@@ -80,5 +89,24 @@ const productos = [
     precio: 2000,
     imagen: "https://placehold.co/200x200/2A9D8F/white?text=Agua+Mineral",
     categoria: "Bebidas",
+    stock: 30,
+  },
+  {
+    id: 11,
+    nombre: "Jugo de Naranja 500ml",
+    descripcion: "Jugo de naranja natural exprimido, 500ml.",
+    precio: 4500,
+    imagen: "https://placehold.co/200x200/2A9D8F/white?text=Jugo+Naranja",
+    categoria: "Bebidas",
+    stock: 18,
+  },
+  {
+    id: 12,
+    nombre: "Limonada Casera 500ml",
+    descripcion: "Limonada casera con menta y jengibre, 500ml.",
+    precio: 4000,
+    imagen: "https://placehold.co/200x200/2A9D8F/white?text=Limonada",
+    categoria: "Bebidas",
+    stock: 20,
   },
 ];

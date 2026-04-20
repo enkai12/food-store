@@ -153,6 +153,12 @@ aside ul li a:hover {
   padding-left: 0.8rem;
 }
 
+aside ul li a.categoria-activa {
+  color: var(--color-primario);
+  padding-left: 0.8rem;
+  font-weight: bold;
+}
+
 /* =====================
    MAIN (contenido central)
    ===================== */
