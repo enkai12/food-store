@@ -77,6 +77,19 @@ header nav a:hover {
   color: var(--color-primario);
 }
 
+/* :focus-visible se activa cuando el usuario navega con el teclado
+   (Tab, Shift+Tab) pero NO cuando hace click con el mouse.
+   Esto es mejor que :focus, que se activaba en ambos casos y resultaba
+   visualmente ruidoso para usuarios de mouse.
+   outline da un borde visible alrededor del elemento enfocado —
+   nunca lo eliminamos sin poner un reemplazo, ya que personas que
+   no usan mouse dependen de él para saber dónde están paradas. */
+header nav a:focus-visible {
+  outline: 2px solid var(--color-primario);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 /* =====================
    LAYOUT PRINCIPAL
    (aside + main)
@@ -143,19 +156,29 @@ aside ul li a {
   color: var(--color-texto);
   text-decoration: none;
   font-size: 0.95rem;
-  transition: color 0.2s, padding-left 0.2s;
+  /* Cambiamos padding-left por transform: translateX.
+     Animar padding causa un "reflow" — el navegador recalcula el
+     layout de toda la página en cada frame de la animación.
+     transform en cambio opera en la GPU y no afecta el layout,
+     lo que resulta en animaciones más fluidas y eficientes. */
+  transition: color 0.2s, transform 0.2s;
 }
 
-/* Al hacer hover el enlace se "mueve" a la derecha con padding-left
-   y cambia de color — da sensación de que es interactivo */
 aside ul li a:hover {
   color: var(--color-primario);
-  padding-left: 0.8rem;
+  transform: translateX(0.4rem);
+}
+
+/* Mismo patrón de focus visible que en el header nav */
+aside ul li a:focus-visible {
+  outline: 2px solid var(--color-primario);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 aside ul li a.categoria-activa {
   color: var(--color-primario);
-  padding-left: 0.8rem;
+  transform: translateX(0.4rem);
   font-weight: bold;
 }
 
@@ -228,6 +251,12 @@ main {
   background-color: var(--color-focus);
 }
 
+/* Focus visible para el botón Buscar — mismo principio que arriba */
+.seccion-busqueda button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
 /* =====================
    SECCIÓN DE PRODUCTOS
    ===================== */
@@ -267,8 +296,11 @@ main {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  /* transition en box-shadow para el efecto hover de la tarjeta */
-  transition: box-shadow 0.2s, transform 0.2s;
+  /* Eliminamos box-shadow de la transición: animar sombras activa
+     el "repaint" del navegador (redibujar píxeles) en cada frame.
+     Solo animamos transform, que el navegador puede delegar a la GPU
+     sin tocar el layout ni los píxeles del resto de la página. */
+  transition: transform 0.2s;
 }
 
 /* Al pasar el mouse la tarjeta "se levanta" — efecto de elevación
@@ -357,6 +389,27 @@ main {
 
 .tarjeta-producto__botones button:last-child:hover {
   background-color: var(--color-focus);
+}
+
+/* Focus visible para los botones de cada tarjeta de producto */
+.tarjeta-producto__botones button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Mensaje que muestra main.js cuando un filtro o búsqueda
+   no encuentra resultados. Sin este estado el usuario vería
+   la grilla vacía sin saber si falló algo o si realmente
+   no hay productos.
+   grid-column: 1 / -1 hace que el párrafo ocupe todas las
+   columnas del grid — de la primera (1) hasta la última (-1).
+   Sin esto quedaría en la primera columna solo, muy chiquito. */
+.sin-resultados {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 1rem;
 }
 
 /* =====================

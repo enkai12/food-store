@@ -142,6 +142,12 @@ La consigna pide que cambie de color al pasar el mouse */
   background-color: var(--color-focus);
 }
 
+/* Focus visible en el botón de login para usuarios de teclado */
+.login__button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
 /* enlace de registro */
 
 .login__register {
@@ -161,6 +167,13 @@ por defecto con text-decoration none */
 /* Le agrego subrayado solo cuando pasa el mouse por encima */
 .login__register-link:hover {
   text-decoration: underline;
+}
+
+/* Focus visible en el link "Registrate acá" */
+.login__register-link:focus-visible {
+  outline: 2px solid var(--color-primario);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* =====================

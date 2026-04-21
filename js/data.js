@@ -1,7 +1,51 @@
+// ============================================================
+// DATA.JS — Base de datos local del proyecto
+// ============================================================
+// Este archivo simula lo que en una app real sería una base de
+// datos o una API. Acá guardamos todos los datos "en crudo":
+// las categorías y los productos. Separarlo del resto del código
+// tiene una ventaja enorme: si mañana querés agregar un producto
+// o cambiar un precio, solo tocás este archivo y el resto del
+// sitio se actualiza solo automáticamente.
+// ============================================================
+
+// ------------------------------------------------------------
+// CATEGORÍAS
+// Array de strings: cada elemento es el nombre de una categoría.
+// Un Array es una lista ordenada de valores. Se declara con [].
+// Usamos const porque esta lista no va a ser reasignada —
+// aunque podemos modificar su contenido, la variable siempre
+// apunta al mismo array.
+// ------------------------------------------------------------
 const categorias = ["Hamburguesas", "Lomos", "Pizzas", "Papas Fritas", "Bebidas"];
 
+// ------------------------------------------------------------
+// FORMATEARPRECIO — Utilidad de formato de moneda
+// Convierte un número (ej: 25000) a una cadena con formato
+// local argentino (ej: "25.000").
+// toLocaleString("es-AR") aplica las reglas de Argentina:
+//   - punto como separador de miles (25.000)
+//   - coma como separador decimal (1.500,50)
+// Definirlo como función evita repetir "toLocaleString("es-AR")"
+// en cada lugar donde se muestra un precio.
+// ------------------------------------------------------------
 const formatearPrecio = (precio) => precio.toLocaleString("es-AR");
 
+// ------------------------------------------------------------
+// PRODUCTOS
+// Array de objetos: cada elemento es un producto con sus
+// propiedades. Un Objeto agrupa datos relacionados en pares
+// clave: valor. Se declara con {}.
+// Campos de cada producto:
+//   id          → identificador único numérico
+//   nombre      → nombre para mostrar en pantalla
+//   descripcion → texto descriptivo del producto
+//   precio      → número entero en pesos argentinos
+//   imagen      → ruta relativa desde index.html hasta la imagen
+//   categoria   → debe coincidir EXACTAMENTE con un valor del
+//                 array "categorias" para que el filtro funcione
+//   stock       → cantidad disponible (0 = sin stock)
+// ------------------------------------------------------------
 const productos = [
   {
     id: 1,

@@ -67,6 +67,15 @@ header nav a:hover {
   color: var(--color-primario);
 }
 
+/* :focus-visible muestra el outline solo al navegar con teclado,
+   no cuando el usuario hace click con el mouse — más limpio visualmente
+   sin sacrificar la accesibilidad para usuarios de teclado */
+header nav a:focus-visible {
+  outline: 2px solid var(--color-primario);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 /* =====================
    MAIN
    ===================== */
@@ -193,9 +202,16 @@ tbody td img {
 }
 
 .accion-eliminar:hover {
-  /* filter: brightness oscurece el color al hacer hover
-     sin tener que definir un color nuevo */
   filter: brightness(0.75);
+}
+
+/* Focus para los links de acción de la tabla.
+   Agrupamos los dos selectores con coma para no repetir el bloque. */
+.accion-editar:focus-visible,
+.accion-eliminar:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* El separador "|" entre Editar y Eliminar */
@@ -248,6 +264,16 @@ tbody td img {
 
 .seccion-formulario summary:hover {
   background-color: var(--color-fondo);
+}
+
+/* El <summary> es el elemento clickeable del <details> — también
+   es interactivo por teclado, así que necesita su focus visible.
+   outline-offset negativo hace que el outline quede "adentro"
+   del elemento en vez de afuera, evitando que se corte con el
+   borde redondeado del contenedor. */
+.seccion-formulario summary:focus-visible {
+  outline: 2px solid var(--color-primario);
+  outline-offset: -2px;
 }
 
 /* El formulario dentro del details */
@@ -321,6 +347,12 @@ tbody td img {
 
 .form-producto__boton:hover {
   background-color: var(--color-focus);
+}
+
+/* Focus para el botón principal del formulario */
+.form-producto__boton:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
 }
 
 /* =====================
