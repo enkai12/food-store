@@ -389,7 +389,7 @@ footer {
   }
 
   /* La tabla tiene muchas columnas y no cabe en pantallas chicas.
-     overflow-x: auto agrega un scroll HORIZONTAL solo a la tabla
+     overflow-x: auto - agrega un scroll HORIZONTAL solo a la tabla
      — el resto de la página no se mueve, solo la tabla se puede
      deslizar para ver todas las columnas */
   .seccion-tabla {

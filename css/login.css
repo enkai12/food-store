@@ -105,7 +105,7 @@ para que el texto no quede pegado al borde */
 /* :focus se activa cuando el usuario hace clic o navega con Tab
    Cambiamos el borde Y agregamos outline para los usuarios de teclado.
    IMPORTANTE: nunca sacar el outline sin poner un reemplazo visible —
-   es una regla de accesibilidad (WCAG 2.4.7) que protege a usuarios
+   es una regla de accesibilidad que protege a usuarios
    que no usan mouse (personas con discapacidad motriz, etc.) */
 .login__input:focus {
   border-color: var(--color-focus);
@@ -180,11 +180,7 @@ por defecto con text-decoration none */
    ACCESIBILIDAD: MOVIMIENTO
    ===================== */
 
-/* Algunos usuarios tienen configurado su sistema operativo para
-   reducir las animaciones (personas con epilepsia, vértigo, etc.)
-   @media (prefers-reduced-motion: reduce) detecta esa configuración
-   y desactiva todas las transiciones — la página funciona igual
-   pero sin movimiento */
+/* reduce las animaciones para personas con epilepsia*/
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
