@@ -93,6 +93,13 @@
                 placeholder="Ingresa los ingredientes..."
               ></textarea>
             </div>
+            <!-- role="alert" + aria-live="polite": cuando JS escribe
+                 mensajes de error acá, los lectores de pantalla los
+                 anuncian automáticamente sin que el usuario tenga que
+                 navegar hasta el elemento. El CSS lo oculta con :empty
+                 cuando está vacío, así no ocupa espacio visual. -->
+            <div class="form-errores" id="form-errores" role="alert" aria-live="polite"></div>
+
             <button class="form-producto__boton" type="submit">Guardar Producto</button>
           </form>
         </details>
@@ -101,7 +108,7 @@
     <footer>
       <p>Panel de Administración - Food Store v1.0</p>
     </footer>
-    <script src="./js/data.js"></script>
-    <script src="./js/admin.js"></script>
+    <!-- Ver comentario de index.html sobre type="module" -->
+    <script type="module" src="./js/admin.js"></script>
   </body>
 </html>

@@ -331,6 +331,35 @@ tbody td img {
   resize: vertical; /* el usuario puede agrandar el textarea solo verticalmente */
 }
 
+/* Contenedor de errores de validación del formulario.
+   Se oculta con :empty cuando no hay errores para no ocupar espacio.
+   :empty coincide cuando el elemento no tiene hijos ni texto —
+   es decir, cuando limpiarErrores() vacía su innerHTML. */
+.form-errores {
+  grid-column: 1 / -1;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-left: 4px solid var(--color-peligro);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  color: var(--color-peligro);
+  font-size: 0.9rem;
+}
+
+.form-errores:empty {
+  display: none;
+}
+
+/* La lista no necesita sangría extra: el padding del contenedor ya da espacio */
+.form-errores ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.form-errores li + li {
+  margin-top: 0.25rem;
+}
+
 .form-producto__boton {
   grid-column: 1 / -1;
   padding: 0.75rem;

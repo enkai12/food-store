@@ -17,7 +17,7 @@
 // aunque podemos modificar su contenido, la variable siempre
 // apunta al mismo array.
 // ------------------------------------------------------------
-const categorias = ["Hamburguesas", "Lomos", "Pizzas", "Papas Fritas", "Bebidas"];
+export const categorias = ["Hamburguesas", "Lomos", "Pizzas", "Papas Fritas", "Bebidas"];
 
 // ------------------------------------------------------------
 // FORMATEARPRECIO — Utilidad de formato de moneda
@@ -29,13 +29,23 @@ const categorias = ["Hamburguesas", "Lomos", "Pizzas", "Papas Fritas", "Bebidas"
 // Definirlo como función evita repetir "toLocaleString("es-AR")"
 // en cada lugar donde se muestra un precio.
 // ------------------------------------------------------------
-const formatearPrecio = (precio) => precio.toLocaleString("es-AR");
+export const formatearPrecio = (precio) => precio.toLocaleString("es-AR");
 
 // ------------------------------------------------------------
-// PRODUCTOS
-// Array de objetos: cada elemento es un producto con sus
-// propiedades. Un Objeto agrupa datos relacionados en pares
-// clave: valor. Se declara con {}.
+// STORAGE_KEY — clave usada para leer y escribir en localStorage
+// Definirla como constante en un solo lugar evita errores de
+// tipeo: si escribís mal la clave al guardar y al leer, los
+// datos nunca coinciden. Con esta const ambas operaciones usan
+// exactamente la misma cadena.
+// ------------------------------------------------------------
+export const STORAGE_KEY = "food_store_productos";
+
+// ------------------------------------------------------------
+// PRODUCTOSINCIALES — datos de fábrica del catálogo
+// Este array define el catálogo base que se carga la primera
+// vez que el usuario abre la app (cuando localStorage está vacío).
+// Lo renombramos para distinguirlo del array "productos" que
+// el resto del código usa, que puede venir de localStorage.
 // Campos de cada producto:
 //   id          → identificador único numérico
 //   nombre      → nombre para mostrar en pantalla
@@ -46,7 +56,7 @@ const formatearPrecio = (precio) => precio.toLocaleString("es-AR");
 //                 array "categorias" para que el filtro funcione
 //   stock       → cantidad disponible (0 = sin stock)
 // ------------------------------------------------------------
-const productos = [
+export const productosIniciales = [
   {
     id: 1,
     nombre: "Hamburguesa Triple",
@@ -156,3 +166,34 @@ const productos = [
     stock: 20,
   },
 ];
+
+// ------------------------------------------------------------
+// PRODUCTOS — array activo que usa toda la app
+// Intentamos cargar los datos desde localStorage con getItem().
+// Si no hay nada guardado, getItem() devuelve null; en ese caso
+// el operador ?? (nullish coalescing) usa el fallback de la
+// derecha: una copia del catálogo inicial.
+//
+// Por qué JSON.parse / JSON.stringify:
+//   localStorage solo guarda strings. JSON.stringify convierte
+//   el array de objetos a texto para guardarlo; JSON.parse lo
+//   convierte de vuelta a array al leerlo.
+//
+// Por qué [...productosIniciales] y no productosIniciales:
+//   El spread operator (...) crea una copia superficial del
+//   array. Si usáramos el array original directamente y después
+//   lo modificamos (push/splice), estaríamos mutando los datos
+//   de fábrica, lo que podría causar bugs difíciles de rastrear.
+// ------------------------------------------------------------
+export const productos = JSON.parse(localStorage.getItem(STORAGE_KEY)) ?? [...productosIniciales];
+
+// ------------------------------------------------------------
+// GUARDARPRODUCTOS — persiste el array actual en localStorage
+// Se llama desde admin.js cada vez que se agrega o elimina un
+// producto. Así el estado del catálogo sobrevive recargas de
+// página: la próxima vez que cargue, JSON.parse recupera la
+// versión guardada en vez del catálogo inicial.
+// ------------------------------------------------------------
+export const guardarProductos = () => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(productos));
+};

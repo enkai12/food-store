@@ -50,7 +50,13 @@
         Contacto: <a href="mailto:info@foodstore.com">info@foodstore.com</a>
       </p>
     </footer>
-    <script src="./js/data.js"></script>
-    <script src="./js/main.js"></script>
+    <!-- type="module" activa ES Modules en el navegador:
+         - cada archivo tiene su propio scope (no contamina el global)
+         - los imports se resuelven automáticamente, por eso ya no
+           hace falta cargar data.js manualmente acá
+         - los módulos se ejecutan en modo estricto ("use strict") por defecto
+         - el script se difiere automáticamente (equivale a defer),
+           así que el HTML ya está parseado cuando el JS se ejecuta -->
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>

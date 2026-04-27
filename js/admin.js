@@ -6,9 +6,57 @@
 //   2. Poblar el select de categorías dinámicamente.
 //   3. Procesar el formulario para agregar productos nuevos
 //      y el botón para eliminarlos.
-// Al igual que main.js, lee los datos de data.js (que se carga
-// primero gracias al orden de los <script> en el HTML).
+// Todas las funciones que modifican datos llaman a guardarProductos()
+// para persistir el estado en localStorage entre recargas.
 // ============================================================
+
+// Importamos todo lo que este módulo necesita de data.js.
+// guardarProductos se importa acá (y no en main.js) porque
+// admin.js es el único que escribe datos — main.js solo lee.
+import { categorias, formatearPrecio, productos, guardarProductos } from "./data.js";
+
+// escaparHTML previene XSS al insertar texto de usuario en innerHTML.
+// validarProducto centraliza las reglas de negocio del formulario.
+// Ver utils.js para la explicación detallada de cada función.
+import { escaparHTML, validarProducto } from "./utils.js";
+
+// ------------------------------------------------------------
+// MOSTRARERRORES / LIMPIARRORES — feedback inline en el form
+// En vez de usar alert() para los errores de validación,
+// los mostramos dentro de un <div> en la misma página.
+// Esto es mejor para la UX: el usuario ve exactamente qué
+// campo falló sin que se cierre un diálogo externo.
+//
+// El <div id="form-errores"> tiene role="alert" y aria-live="polite"
+// en el HTML, lo que hace que los lectores de pantalla anuncien
+// los errores automáticamente cuando el contenido cambia.
+// ------------------------------------------------------------
+const mostrarErrores = (errores) => {
+  const contenedor = document.getElementById("form-errores");
+
+  // Creamos la lista con createElement + textContent (nunca innerHTML)
+  // para que los mensajes de error tampoco puedan contener HTML.
+  const ul = document.createElement("ul");
+  errores.forEach((msg) => {
+    const li = document.createElement("li");
+    li.textContent = msg;
+    ul.appendChild(li);
+  });
+
+  // Limpiamos antes de escribir para no acumular errores de intentos previos
+  contenedor.innerHTML = "";
+  contenedor.appendChild(ul);
+
+  // scrollIntoView con "nearest" mueve la página lo mínimo necesario
+  // para que el div de errores sea visible, sin saltar al tope del form.
+  contenedor.scrollIntoView({ behavior: "smooth", block: "nearest" });
+};
+
+const limpiarErrores = () => {
+  // Vaciar innerHTML en lugar de display:none mantiene el elemento
+  // en el DOM — si lo ocultamos con CSS, el :empty lo oculta solo.
+  document.getElementById("form-errores").innerHTML = "";
+};
 
 // ------------------------------------------------------------
 // CLASEDESTOCK — devuelve la clase CSS según el stock
@@ -42,12 +90,21 @@ const cargarTabla = (lista) => {
   lista.forEach((producto) => {
     const tr = document.createElement("tr");
 
+    // escaparHTML se aplica a todos los campos de texto del producto.
+    // Los campos numéricos (id, precio, stock) no necesitan escapado
+    // porque Number garantiza que son números, nunca cadenas con HTML.
+    // La imagen va en un atributo src y también se escapa para evitar
+    // que un valor del tipo javascript:... pueda ejecutar código.
+    const nombre    = escaparHTML(producto.nombre);
+    const categoria = escaparHTML(producto.categoria);
+    const imagen    = escaparHTML(producto.imagen);
+
     // claseDeStock decide si el número de stock se ve en rojo o verde
     tr.innerHTML = `
       <td>${producto.id}</td>
-      <td><img src="${producto.imagen}" width="50" alt="${producto.nombre}" loading="lazy" /></td>
-      <td>${producto.nombre}</td>
-      <td>${producto.categoria}</td>
+      <td><img src="${imagen}" width="50" alt="${nombre}" loading="lazy" /></td>
+      <td>${nombre}</td>
+      <td>${categoria}</td>
       <td>$${formatearPrecio(producto.precio)}</td>
       <td class="${claseDeStock(producto.stock)}">${producto.stock}</td>
       <td>
@@ -133,14 +190,17 @@ document.getElementById("cuerpo-tabla").addEventListener("click", (e) => {
   // devuelve una copia nueva sin modificar el original.
   if (index !== -1) productos.splice(index, 1);
 
+  // Persistimos el array modificado antes de re-renderizar
+  guardarProductos();
+
   // Re-renderizamos la tabla para reflejar el cambio
   cargarTabla(productos);
 });
 
 // ------------------------------------------------------------
 // FORMULARIO — agregar producto nuevo
-// Lee los valores de los inputs, construye un objeto producto
-// y lo agrega al array. Luego re-renderiza la tabla.
+// Lee los valores de los inputs, valida con validarProducto()
+// y solo si todo es correcto construye el objeto y lo guarda.
 // ------------------------------------------------------------
 const formularioAdmin = document.querySelector(".form-producto");
 
@@ -153,11 +213,28 @@ formularioAdmin.addEventListener("submit", (e) => {
   // .value devuelve el contenido del input como string.
   // .trim() elimina espacios al inicio y al final.
   // Number() convierte strings a números para precio y stock.
-  const nombre = document.getElementById("nombre-producto").value.trim();
-  const categoria = document.getElementById("select-categoria").value;
-  const precio = Number(document.getElementById("precio").value);
-  const stock = Number(document.getElementById("stock").value);
+  const nombre      = document.getElementById("nombre-producto").value.trim();
+  const categoria   = document.getElementById("select-categoria").value;
+  const precio      = Number(document.getElementById("precio").value);
+  const stock       = Number(document.getElementById("stock").value);
   const descripcion = document.getElementById("descripcion").value.trim();
+
+  // validarProducto revisa todas las reglas y devuelve
+  //   { valido: true, errores: [] }          → todo bien
+  //   { valido: false, errores: ["..."] }    → hay problemas
+  // Si falla, mostramos los errores y cortamos con return.
+  const { valido, errores } = validarProducto(
+    { nombre, categoria, precio, stock },
+    categorias
+  );
+
+  if (!valido) {
+    mostrarErrores(errores);
+    return;
+  }
+
+  // Si llegamos acá, los datos son válidos. Limpiamos errores previos.
+  limpiarErrores();
 
   // Tomamos las dos primeras letras del nombre para generar una
   // imagen placeholder con las iniciales del producto.
@@ -190,6 +267,9 @@ formularioAdmin.addEventListener("submit", (e) => {
   // (productos = otraLista daría error), pero sí podemos
   // modificar su contenido con métodos como push o splice.
   productos.push(nuevoProducto);
+
+  // Persistimos el array con el nuevo producto antes de re-renderizar
+  guardarProductos();
 
   // Re-renderizamos la tabla con el array actualizado
   cargarTabla(productos);

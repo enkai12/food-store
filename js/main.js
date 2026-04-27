@@ -1,6 +1,15 @@
 // ============================================================
 // MAIN.JS — Lógica de la tienda (index.html)
 // ============================================================
+// import trae exactamente los valores que necesitamos de data.js.
+// La ruta debe incluir la extensión ".js" cuando se usan ES Modules
+// en el navegador (a diferencia de Node.js o bundlers que la
+// infieren). Solo importamos lo que este módulo realmente usa —
+// guardarProductos no se importa porque main.js nunca modifica datos.
+import { categorias, formatearPrecio, productos } from "./data.js";
+
+// Importamos solo escaparHTML porque main.js nunca valida ni escribe datos.
+import { escaparHTML } from "./utils.js";
 // Este archivo se encarga de "pintar" los datos de data.js
 // en la pantalla. Nunca modifica los datos directamente —
 // solo los lee y genera el HTML correspondiente.
@@ -75,11 +84,17 @@ const renderizarProductos = (lista) => {
     // Template string (comillas invertidas ``): permite insertar
     // variables de JS dentro de texto HTML con ${expresion}.
     // Construimos el HTML interno de la tarjeta de una vez.
+    // escaparHTML se aplica a los campos de texto antes de interpolarlos
+    // en el template. Precio es un número formateado — no necesita escape.
+    const nombre      = escaparHTML(producto.nombre);
+    const descripcion = escaparHTML(producto.descripcion);
+    const imagen      = escaparHTML(producto.imagen);
+
     article.innerHTML = `
-      <img src="${producto.imagen}" alt="${producto.nombre}" loading="lazy" />
+      <img src="${imagen}" alt="${nombre}" loading="lazy" />
       <div class="tarjeta-producto__contenido">
-        <h3>${producto.nombre}</h3>
-        <p>${producto.descripcion}</p>
+        <h3>${nombre}</h3>
+        <p>${descripcion}</p>
         <p class="precio"><strong>$${formatearPrecio(producto.precio)}</strong></p>
         <div class="tarjeta-producto__botones">
           <button>Ver Detalles</button>
